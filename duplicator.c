@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <signal.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/wait.h>
 #include <fcntl.h>
 
@@ -143,11 +142,15 @@ int main(int argc, char *argv[]) {
             /* checking validity */
         default:
             buffer[bytesRead] = '\0';
-            int num = processes * atoi(SECTIONS);
-            if (atoi(buffer) == num)
-                printf("\x1b[32mProgram exit succes, number in fileDescriptor %s is equal to %d\x1b[0m\n", buffer, num);
-            else
-                printf("\x1b[31mProgram exit failure, number in fileDescriptor %s ,isn't equal to %d\x1b[0m\n", buffer, num);
+            int expected = processes * atoi(SECTIONS);
+            int result = atoi(buffer);
+            if (result == expected) {
+                printf("\x1b[32mProgram exit succes, number in fileDescriptor %s is equal to %d\x1b[0m\n", buffer,
+                       expected);
+            } else {
+                printf("\x1b[31mProgram exit failure, number in fileDescriptor %s ,isn't equal to %d\x1b[0m\n", buffer,
+                       expected);
+            }
             break;
     }
 
