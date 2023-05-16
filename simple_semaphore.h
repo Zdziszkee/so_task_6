@@ -17,5 +17,5 @@ void post_semaphore(sem_t *sem);
 
 void wait_semaphore(sem_t *sem);
 
-void get_value_semaphore(sem_t *sem, int *sval);
+void get_value_semaphore(sem_t *sem, int *value);
 #endif //SO_TASK_6_SIMPLE_SEMAPHORE_H

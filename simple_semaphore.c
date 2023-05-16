@@ -2,13 +2,11 @@
 // Created by Kacper Kuchta on 5/15/23.
 //
 #include <fcntl.h>
-#include <sys/stat.h>
 #include <semaphore.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
 
-sem_t *create_semaphore(const char *name) {
+sem_t* create_semaphore(const char *name) {
     sem_t *sem = sem_open(name, O_CREAT | O_EXCL, 0666, 1);
     if (sem == SEM_FAILED) {
         perror("Failed to create semaphore\n");
@@ -56,8 +54,8 @@ void wait_semaphore(sem_t *sem) {
     }
 }
 
-void get_value_semaphore(sem_t *sem, int *sval) {
-    if (sem_getvalue(sem, sval) == -1) {
+void get_value_semaphore(sem_t *sem, int *value) {
+    if (sem_getvalue(sem, value) == -1) {
         perror("Semaphore get value error\n");
         exit(EXIT_FAILURE);
     }
