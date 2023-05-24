@@ -2,12 +2,14 @@
 // Created by Kacper Kuchta on 5/15/23.
 //
 #include <fcntl.h>
+#include <sys/stat.h>
 #include <semaphore.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 sem_t* create_semaphore(const char *name) {
-    sem_t *sem = sem_open(name, O_CREAT | O_EXCL, 0666, 1);
+    sem_t *sem = sem_open(name, O_CREAT | O_EXCL, 0664, 1);
     if (sem == SEM_FAILED) {
         perror("Failed to create semaphore\n");
         exit(EXIT_FAILURE);

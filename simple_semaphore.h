@@ -3,8 +3,8 @@
 //
 #include <semaphore.h>
 
-#ifndef SO_TASK_6_SIMPLE_SEMAPHORE_H
-#define SO_TASK_6_SIMPLE_SEMAPHORE_H
+#ifndef SEMAPHORE_H
+#define SIMPLE_SEMAPHORE_H
 sem_t create_semaphore(const char *name);
 
 sem_t open_semaphore(const char *name);
@@ -18,4 +18,4 @@ void post_semaphore(sem_t *sem);
 void wait_semaphore(sem_t *sem);
 
 void get_value_semaphore(sem_t *sem, int *value);
-#endif //SO_TASK_6_SIMPLE_SEMAPHORE_H
+#endif

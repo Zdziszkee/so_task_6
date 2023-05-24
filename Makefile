@@ -1,5 +1,5 @@
 #
-# make: all, clean, tar  
+# make: all, clean, tar
 #
 #=========================================================================
 DIR = `basename $(CURDIR)`
@@ -12,7 +12,7 @@ FILE = number.txt
 
 NUMBER_OF_SECTIONS = 7
 NUMBER_OF_PROGRAMS = 5
-SEMAPHORE_NAME = simple_semaphore
+SEMAPHORE_NAME = sem
 SYNCHRONIZATION = 1
 
 #----------------------
@@ -25,12 +25,12 @@ OBJS2 = $(NAME2).o
 LIBS1 = $(LIB1).c
 #----------------------
 #############################
-COFLAGS = -lpthread
-LDFLAGS = -lpthread
-CO = g++
+COFLAGS = -lpthread -Wall -std=c99 -pedantic
+LDFLAGS = -lpthread -Wall -std=c99 -pedantic
+CO = gcc
 LD = $(CO)
 #############################
-%.o: %.cpp
+%.o: %.c
 	$(CO) $(COFLAGS) -c $<
 #############################
 .PHONY: all
@@ -43,21 +43,21 @@ d: $(EXEC1)
 i: $(EXEC2)
 #############################
 $(EXEC1): $(OBJS1) $(LIBS1)
-	 $(LD) $^ -o $@ $(LDFLAGS) 
+	 $(LD) $^ -o $@ $(LDFLAGS)
 #############################
 $(EXEC2): $(OBJS2) $(LIBS1)
-	 $(LD) $^ -o $@ $(LDFLAGS) 
+	 $(LD) $^ -o $@ $(LDFLAGS)
 #############################
 
 .PHONE: run
 run: $(EXEC1) $(EXEC2)
 	clear
-	./$(EXEC1) ./$(EXEC2) $(NUMBER_OF_PROGRAMS) $(NUMBER_OF_SECTIONS) $(FILE) $(SEMAPHORE_NAME) $(SYNCHRONIZATION)
+	./$(EXEC1) ./$(EXEC2).x $(NUMBER_OF_PROGRAMS) $(NUMBER_OF_SECTIONS) $(FILE) $(SEMAPHORE_NAME) $(SYNCHRONIZATION)
 
 .PHONY: clean tar
 EXECS = $(EXEC1) $(EXEC2)
 
-clean:                                                     
+clean:
 	rm -f *.o  *~ $(EXECS)
 #=========================================================================
 # Archiwizacja i kompresja

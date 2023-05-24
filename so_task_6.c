@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <fcntl.h>
 #include <string.h>
 #include "simple_semaphore.h"
-#include <semaphore.h>
 #include <stdbool.h>
 
 
@@ -96,7 +96,7 @@ int main(int argc, char **argv) {
         sleep(rand() % 5);
 
         /* open file to write */
-        file = open(FILE, O_TRUNC | O_WRONLY | O_CREAT, 0666);
+        file = open(FILE, O_TRUNC | O_WRONLY | O_CREAT, 0644);
         if ((file) == -1) {
             printf("Failed to open file to write data\n");
             exit(EXIT_FAILURE);

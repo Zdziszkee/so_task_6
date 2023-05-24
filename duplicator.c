@@ -1,6 +1,7 @@
 //
 // Created by Kacper Kuchta on 5/15/23.
 //
+#include "simple_semaphore.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -10,7 +11,6 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 
-#include "simple_semaphore.h"
 
 #define PROGRAM argv[1]
 #define PROCESSES argv[2]
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
 
 
     /* create fileDescriptor */
-    int fileDescriptor = open(FILE, O_WRONLY | O_TRUNC | O_CREAT, 0666);
+    int fileDescriptor = open(FILE, O_WRONLY | O_TRUNC | O_CREAT, 0644);
     if (fileDescriptor == -1) {
         perror("Failed to open fileDescriptor\n");
         exit(EXIT_FAILURE);
@@ -98,7 +98,7 @@ int main(int argc, char *argv[]) {
                 exit(EXIT_FAILURE);
 
             case 0:
-                if (execlp(PROGRAM, PROGRAM, SECTIONS, FILE, SEMAPHORE, SYNCHRONIZATION, NULL) == -1) {
+                if (execlp(PROGRAM, PROGRAM, SECTIONS, FILE, SEMAPHORE, SYNCHRONIZATION,  (char*) NULL) == -1) {
                     printf("%s", PROGRAM);
                     perror("Execlp error\n");
                     exit(EXIT_FAILURE);
@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
 
 
     /* open fileDescriptor again */
-    if ((fileDescriptor = open(FILE, O_RDONLY, 0666)) == -1) {
+    if ((fileDescriptor = open(FILE, O_RDONLY, 0644)) == -1) {
         perror("Open again exit\n");
         exit(EXIT_FAILURE);
     }
