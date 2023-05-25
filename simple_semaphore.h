@@ -5,9 +5,9 @@
 
 #ifndef SEMAPHORE_H
 #define SIMPLE_SEMAPHORE_H
-sem_t create_semaphore(const char *name);
+sem_t *create_semaphore(const char *name);
 
-sem_t open_semaphore(const char *name);
+sem_t *open_semaphore(const char *name);
 
 void close_semaphore(sem_t *sem);
 

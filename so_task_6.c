@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
     /* open semaphore */
     sem_t *sem = NULL;
     if (synchronization) {
-        *sem = open_semaphore(SEMAPHORE);
+        sem = open_semaphore(SEMAPHORE);
     }
 
     /* get number of critical sections */

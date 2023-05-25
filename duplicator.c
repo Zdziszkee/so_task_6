@@ -80,8 +80,8 @@ int main(int argc, char *argv[]) {
     /* create semaphore */
     if (synchronized) {
         int semVal;
-        sem_t sem = create_semaphore(SEMAPHORE);
-        get_value_semaphore(&sem, &semVal);
+        sem_t* sem = create_semaphore(SEMAPHORE);
+        get_value_semaphore(sem, &semVal);
         printf("Semaphore's adress: (%d)\nSemaphore's value: %d\n", sem, semVal);
     }
 
