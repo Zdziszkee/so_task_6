@@ -29,7 +29,7 @@ void cleanUp(void) {
 void sigHandler(int signal) {
     if (synchronized) {
         printf("SIGINT, unlinking semaphore\n");
-        _exit(0);
+        exit(0);
     }
 }
 
